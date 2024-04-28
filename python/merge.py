@@ -1,6 +1,3 @@
-# Assignment-7 - COSC 2316 - Professor McCurry
-# Implemented by - Swapnil Puri
-
 import math
 import random
 import matplotlib.pyplot as plt
