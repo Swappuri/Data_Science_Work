@@ -1,6 +1,3 @@
-# Assignment-5 – COSC 2316-01 – Professor McCurry
-# Implemented by - Swapnil Puri
-
 from timeit import default_timer as time
 import matplotlib.pyplot as plt
 
