@@ -1,1 +1,1 @@
-This repository contains the data science work completed for the COSC 2316 course at St. Edward's University.
+This repository contains data science work examining the efficiency of sorting algorithms and the extrema of graphs.
