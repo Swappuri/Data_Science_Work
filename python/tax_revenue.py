@@ -1,6 +1,3 @@
-# Inclass Assignment-3 - COSC 2316 - Professor McCurry
-# Implemented by - Swapnil Puri
-
 import math
 import matplotlib.pyplot as plt
 
