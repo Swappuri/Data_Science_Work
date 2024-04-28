@@ -1,5 +1,3 @@
-# Inclass Assignment-4 - COSC 2316 - Professor McCurry
-# Implemented by - Swapnil Puri
 import random
 from timeit import default_timer as timer
 import matplotlib.pyplot as plt
