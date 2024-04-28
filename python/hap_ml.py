@@ -7,8 +7,8 @@ def main():
     print(ess.shape)
 
     # Prints five rows of the happy and social meet columns
-    # print(ess.loc[:, 'happy'].head())
-    # print(ess.loc[:, 'sclmeet'].head())
+    print(ess.loc[:, 'happy'].head())
+    print(ess.loc[:, 'sclmeet'].head())
 
     # Weeds out incomplete answers for the following variables
     ess = ess.loc[ess['sclmeet'] <= 10, :].copy()
@@ -30,16 +30,16 @@ def main():
     print(f'The lower mean is {meanlower}')
     print(f'The higher mean is {meanhigher}')
 
-    # # Prints the split point for the number of household members
-    # allvalues = list(ess.loc[:, 'hhmmb'])
-    # predictedvalues = list(ess.loc[:, 'happy'])
-    # print(get_splitpoint(allvalues, predictedvalues))
+    # Prints the split point for the number of household members
+    allvalues = list(ess.loc[:, 'hhmmb'])
+    predictedvalues = list(ess.loc[:, 'happy'])
+    print(get_splitpoint(allvalues, predictedvalues))
 
-    # # Prints a tree with a depth of two
-    # variables = ['rlgdgr', 'hhmmb', 'netusoft', 'agea', 'eduyrs']
-    # outcome_variable = 'happy'
-    # maxdepth = 2
-    # print(getsplit(0, maxdepth, ess, variables, outcome_variable))
+    # Prints a tree with a depth of two
+    variables = ['rlgdgr', 'hhmmb', 'netusoft', 'agea', 'eduyrs']
+    outcome_variable = 'happy'
+    maxdepth = 2
+    print(getsplit(0, maxdepth, ess, variables, outcome_variable))
 
     # Prints a tree with a depth of three
     variables = ['sclmeet', 'rlgdgr', 'hhmmb', 'netusoft', 'agea', 'eduyrs', 'health', 'imprich']
@@ -58,21 +58,21 @@ def main():
     errors = abs(ess.loc[:, 'predicted'] - ess.loc[:, 'happy'])
     print(np.mean(errors))
 
-    # # Determines the total error rate between predicted and actual happiness values for test data
-    # np.random.seed(518)
-    # ess_shuffled = ess.reindex(np.random.permutation(ess.index)).reset_index(drop=True)
-    # training_data = ess_shuffled.loc[0:37000, :]
-    # test_data = ess_shuffled.loc[37001:, :].reset_index(drop=True)
-    # thetree = getsplit(0, maxdepth, training_data, variables, outcome_variable)
+    # Determines the total error rate between predicted and actual happiness values for test data
+    np.random.seed(518)
+    ess_shuffled = ess.reindex(np.random.permutation(ess.index)).reset_index(drop=True)
+    training_data = ess_shuffled.loc[0:37000, :]
+    test_data = ess_shuffled.loc[37001:, :].reset_index(drop=True)
+    thetree = getsplit(0, maxdepth, training_data, variables, outcome_variable)
 
-    # # Make predictions on the test data and calculate errors
-    # predictions = []
-    # for k in range(0, len(test_data.index)):
-    #     observation = test_data.loc[k, :]
-    #     predictions.append(get_prediction(observation, thetree))
-    # test_data.loc[:, 'predicted'] = predictions
-    # errors = abs(test_data.loc[:, 'predicted'] - test_data.loc[:, 'happy'])
-    # print(np.mean(errors))
+    # Make predictions on the test data and calculate errors
+    predictions = []
+    for k in range(0, len(test_data.index)):
+        observation = test_data.loc[k, :]
+        predictions.append(get_prediction(observation, thetree))
+    test_data.loc[:, 'predicted'] = predictions
+    errors = abs(test_data.loc[:, 'predicted'] - test_data.loc[:, 'happy'])
+    print(np.mean(errors))
 
 # Finds the best split point for a variable
 def get_splitpoint(allvalues,predictedvalues):
